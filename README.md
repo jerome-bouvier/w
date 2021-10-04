@@ -1,2 +1,2 @@
 # w
-![]./wpng.png
+![](./wpng.png)
