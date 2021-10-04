@@ -6,44 +6,56 @@ function setup() {
 function draw() {
   background('#FAFAFA')
   noFill()
-  strokeWeight(10)
+  strokeWeight(40)
   
   const cx = height * 0.5
   const cy = width * 0.5
   const cr = height * 0.5
   
-  const row = 90
-  const col = 90
-  const marginy = col * 0.5
-  const marginx = row * 0.5
+  const row = 150  
+  const col = 150
   
-  for (let y = marginy ; y < height - marginy; y += col) {
-    for (let x = marginx; x < width - marginx; x += row) {
+  for (let y = col * 1.5 ; y < height - col ; y += col) {
+    for (let x = row ; x < width ; x += row) {
       
-      let arcType = 0
-      const r = int(random(0, 7))
-      
-      if (r == 0) {
-          arcType = HALF_PI
-      } else if (r == 1) {
-        arcType = PI
-      } else if (r == 2) {
-          arcType = - HALF_PI
-      } else if (r == 3) {
-          arcType = - PI
-      } else if (r == 4) {
-          arcType = PI + QUARTER_PI
-      } else if (r == 5) {
-          arcType = PI
-      } else if (r == 6) {
-          arcType = HALF_PI + PI
-      }
+      let ang = getAngle()
         
       push()
       translate(x, y)
-      arc(0, 0, col, row, r, arcType)
+      arc(0, 0, col, row, 0, ang)
+      stroke('rgba(70,70,70,0.25)')
+      arc(col * 0.1, row * 0.1, col, row, 0, ang)
       pop()
       
     }
-  }  
+  }
+  
+  function getAngle(){
+    
+    let r = int(random(0, 4))
+    
+    switch(r) {
+      case 0:
+        return HALF_PI
+      break
+      case 1:
+        return PI
+      break
+      case 2:
+        return - HALF_PI
+      break
+      case 3:
+        return - PI
+      break
+      case 4:
+        return PI + QUARTER_PI
+      break
+      case 5:
+        return HALF_PI + PI
+      break
+      case 6:
+        return PI + HALF_PI
+      break
+    }
+  }
 }
